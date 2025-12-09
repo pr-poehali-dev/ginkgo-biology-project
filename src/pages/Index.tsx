@@ -142,7 +142,11 @@ export default function Index() {
       <header className="border-b bg-card sticky top-0 z-10 shadow-sm">
         <div className="container mx-auto px-4 py-6">
           <div className="flex items-center gap-3 mb-2">
-            <Icon name="Trees" size={32} className="text-primary" />
+            <img 
+              src="https://cdn.poehali.dev/files/IMG_5626.jpeg" 
+              alt="Патриарший сад" 
+              className="w-12 h-12 rounded-full object-cover"
+            />
             <h1 className="text-3xl font-bold text-foreground">Древние деревья планеты</h1>
           </div>
           <p className="text-muted-foreground">Научная презентация о реликтовых и интродуцированных видах деревьев</p>
