@@ -116,6 +116,22 @@ const treesData: TreeData[] = [
 
 const bibliographyData = [
   {
+    category: 'Книги',
+    sources: [
+      'Соколов С.Я., Связева О.А. География древесных растений СССР. — М.-Л.: Наука, 1965. — 265 с.',
+      'Колесников А.И. Декоративная дендрология. — М.: Лесная промышленность, 1974. — 703 с.',
+      'Деревья и кустарники СССР. Том I–VI. — М.-Л.: Изд-во АН СССР, 1949–1962.'
+    ]
+  },
+  {
+    category: 'Научные статьи',
+    sources: [
+      'Crane P.R. Ginkgo: The Tree That Time Forgot. — Yale University Press, 2013.',
+      'Zhou Z., Zheng S. Palaeobiology of the Ginkgoales // Palaeoworld. 2003. Vol. 14. P. 1–127.',
+      'Hori T., Ridge R.W. et al. Insights into the phylogenetic relationships within Magnoliaceae // Int. J. Plant Sci. 2006.'
+    ]
+  },
+  {
     category: 'Электронные ресурсы',
     sources: [
       'The Plant List (2013). Version 1.1. http://www.theplantlist.org/',
@@ -167,6 +183,18 @@ export default function Index() {
                     <div className="text-xs text-muted-foreground italic">{tree.latinName}</div>
                   </button>
                 ))}
+                <Separator className="my-4" />
+                <button
+                  onClick={() => {
+                    document.getElementById('bibliography')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="w-full text-left p-3 rounded-md bg-muted/30 hover:bg-accent/50 transition-all"
+                >
+                  <div className="font-semibold text-sm flex items-center gap-2">
+                    <Icon name="BookOpen" size={16} />
+                    Библиография
+                  </div>
+                </button>
               </CardContent>
             </Card>
           </aside>
