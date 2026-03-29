@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import Icon from '@/components/ui/icon';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 interface TreeData {
   id: string;
@@ -19,6 +20,11 @@ interface TreeData {
     leaves: string;
     distribution: string;
   };
+  gallery: {
+    label: string;
+    url: string;
+    description: string;
+  }[];
 }
 
 const treesData: TreeData[] = [
@@ -35,7 +41,12 @@ const treesData: TreeData[] = [
       habitat: 'Умеренный климат, влажные почвы',
       leaves: 'Веерообразные, двухлопастные, 5-8 см',
       distribution: 'Восточная Азия (культивируется повсеместно)'
-    }
+    },
+    gallery: [
+      { label: "Листья", url: "https://images.unsplash.com/photo-1604608672516-f1b9b1d37076?w=800&q=80", description: "Характерные веерообразные листья гинкго в осеннем золотистом наряде" },
+      { label: "Кора", url: "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=800&q=80", description: "Серо-коричневая глубоко трещиноватая кора взрослого дерева" },
+      { label: "Плоды", url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80", description: "Мясистые семена гинкго жёлтого цвета на ветви" }
+    ]
   },
   {
     id: 'gymnocladus',
@@ -50,7 +61,12 @@ const treesData: TreeData[] = [
       habitat: 'Речные долины, влажные плодородные почвы',
       leaves: 'Дваждыперистые, до 90 см длиной',
       distribution: 'Центральная и Восточная часть Северной Америки'
-    }
+    },
+    gallery: [
+      { label: "Листья", url: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80", description: "Крупные дваждыперистые листья бундука длиной до 1 метра" },
+      { label: "Кора", url: "https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?w=800&q=80", description: "Грубая чешуйчатая кора с глубокими бороздами" },
+      { label: "Стручки", url: "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?w=800&q=80", description: "Крупные коричневые стручки с семенами-заменителями кофе" }
+    ]
   },
   {
     id: 'magnolia',
@@ -65,7 +81,12 @@ const treesData: TreeData[] = [
       habitat: 'Горные леса, влажные регионы',
       leaves: 'Обратнояйцевидные, 20-40 см длиной',
       distribution: 'Япония (острова Хоккайдо и Хонсю)'
-    }
+    },
+    gallery: [
+      { label: "Цветок", url: "https://images.unsplash.com/photo-1589998059171-988d887df646?w=800&q=80", description: "Крупный ароматный белый цветок магнолии до 20 см в диаметре" },
+      { label: "Листья", url: "https://images.unsplash.com/photo-1520412099551-62b6bafeb5bb?w=800&q=80", description: "Огромные обратнояйцевидные листья длиной до 40 см" },
+      { label: "Плоды", url: "https://images.unsplash.com/photo-1533038590840-1cde6e668a91?w=800&q=80", description: "Красные семена в шишковидном соплодии магнолии" }
+    ]
   },
   {
     id: 'oak',
@@ -80,7 +101,12 @@ const treesData: TreeData[] = [
       habitat: 'Влажные низины, поймы рек',
       leaves: 'Глубоко лопастные, 7-13 см',
       distribution: 'Восточная и Центральная часть США'
-    }
+    },
+    gallery: [
+      { label: "Листья", url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80", description: "Глубоко рассечённые листья с яркой осенней окраской" },
+      { label: "Кора", url: "https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=800&q=80", description: "Гладкая серо-коричневая кора молодого дуба болотного" },
+      { label: "Жёлуди", url: "https://images.unsplash.com/photo-1572715376701-98568319fd0b?w=800&q=80", description: "Мелкие округлые жёлуди с неглубокой плюской" }
+    ]
   },
   {
     id: 'corylus',
@@ -95,7 +121,12 @@ const treesData: TreeData[] = [
       habitat: 'Горные леса, известковые почвы',
       leaves: 'Округлые, зубчатые, 7-12 см',
       distribution: 'Юго-Восточная Европа, Кавказ, Малая Азия'
-    }
+    },
+    gallery: [
+      { label: "Листья", url: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&q=80", description: "Округлые зубчатые листья лещины древовидной" },
+      { label: "Кора", url: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80", description: "Светло-серая пробковидная кора с характерными трещинами" },
+      { label: "Орехи", url: "https://images.unsplash.com/photo-1574856344991-aaa31b6f4ce3?w=800&q=80", description: "Орехи в бахромчатой обёртке на ветви" }
+    ]
   },
   {
     id: 'phellodendron',
@@ -110,7 +141,12 @@ const treesData: TreeData[] = [
       habitat: 'Смешанные леса, долины рек',
       leaves: 'Перистосложные, 25-40 см',
       distribution: 'Сахалин, Курильские острова'
-    }
+    },
+    gallery: [
+      { label: "Кора", url: "https://images.unsplash.com/photo-1445264918150-66a2371142a2?w=800&q=80", description: "Мягкая бархатистая пробковая кора пепельно-серого цвета" },
+      { label: "Листья", url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80", description: "Перистосложные листья с характерным расположением" },
+      { label: "Плоды", url: "https://images.unsplash.com/photo-1476362174823-3a23f4aa6d77?w=800&q=80", description: "Чёрные ягодообразные костянки на кисти" }
+    ]
   }
 ];
 
@@ -127,6 +163,7 @@ const bibliographyData = [
 
 export default function Index() {
   const [selectedTree, setSelectedTree] = useState<TreeData>(treesData[0]);
+  const [lightboxImage, setLightboxImage] = useState<{url: string; description: string} | null>(null);
 
   return (
     <div className="min-h-screen bg-background">
@@ -195,7 +232,7 @@ export default function Index() {
                 </div>
 
                 <Tabs defaultValue="description" className="w-full">
-                  <TabsList className="grid w-full grid-cols-3">
+                  <TabsList className="grid w-full grid-cols-4">
                     <TabsTrigger value="description" className="flex items-center gap-2">
                       <Icon name="FileText" size={16} />
                       Описание
@@ -207,6 +244,10 @@ export default function Index() {
                     <TabsTrigger value="characteristics" className="flex items-center gap-2">
                       <Icon name="BarChart3" size={16} />
                       Характеристики
+                    </TabsTrigger>
+                    <TabsTrigger value="gallery" className="flex items-center gap-2">
+                      <Icon name="Image" size={16} />
+                      Галерея
                     </TabsTrigger>
                   </TabsList>
 
@@ -296,6 +337,33 @@ export default function Index() {
                       </div>
                     </div>
                   </TabsContent>
+
+                  <TabsContent value="gallery" className="mt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {selectedTree.gallery.map((item, idx) => (
+                        <div 
+                          key={idx} 
+                          className="group cursor-pointer"
+                          onClick={() => setLightboxImage({ url: item.url, description: item.description })}
+                        >
+                          <div className="relative overflow-hidden rounded-lg border">
+                            <img
+                              src={item.url}
+                              alt={item.label}
+                              className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all flex items-center justify-center">
+                              <Icon name="ZoomIn" size={32} className="text-white opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </div>
+                          </div>
+                          <div className="mt-2">
+                            <p className="font-semibold text-sm">{item.label}</p>
+                            <p className="text-xs text-muted-foreground">{item.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </TabsContent>
                 </Tabs>
               </CardContent>
             </Card>
@@ -332,6 +400,21 @@ export default function Index() {
           </main>
         </div>
       </div>
+
+      <Dialog open={!!lightboxImage} onOpenChange={() => setLightboxImage(null)}>
+        <DialogContent className="max-w-4xl p-2">
+          {lightboxImage && (
+            <div>
+              <img
+                src={lightboxImage.url.replace('w=800', 'w=1600')}
+                alt={lightboxImage.description}
+                className="w-full max-h-[80vh] object-contain rounded-lg"
+              />
+              <p className="text-sm text-muted-foreground mt-3 px-2 pb-2">{lightboxImage.description}</p>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <footer className="border-t mt-12 py-6 bg-card">
         <div className="container mx-auto px-4 text-center text-sm text-muted-foreground">
